@@ -48,7 +48,8 @@ function report() {
     }
     //logger.trace(memProfile.log());
     require('lodash').each(memProfile.statistics, function(row, name) {
-        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Cache[calls|hits]"] = {total: (row.initial + row.cached), count: row.cached};
+        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Hits[calls|hits]"] = {total: (row.initial + row.cached), count: row.cached};
+        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Misses[calls|misses]"] = {total: (row.initial + row.cached), count: row.initial};
         row.initial = row.cached = 0;
     });
     req.write(JSON.stringify(obj));
