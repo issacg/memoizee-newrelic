@@ -50,6 +50,7 @@ function report() {
     require('lodash').each(memProfile.statistics, function(row, name) {
         obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Hits[calls|hits]"] = {total: (row.initial + row.cached), count: row.cached};
         obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Misses[calls|misses]"] = {total: (row.initial + row.cached), count: row.initial};
+        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Calls[calls]"] = {total: (row.initial + row.cached)};
         row.initial = row.cached = 0;
     });
     req.write(JSON.stringify(obj));
