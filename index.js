@@ -15,7 +15,6 @@
 var logger = require('log4js').getLogger('memoizee-newrelic'),
     _ = require('lodash'),
     memProfile = require('memoizee/profile'),
-    cluster = require('cluster'),
     license = '';
 
 function report() {
@@ -39,7 +38,7 @@ function report() {
       },
       "components": [
         {
-          "name": require('os').hostname() + (cluster.worker ? ' child ' + cluster.worker.id : ''),
+          "name": require('os').hostname(),
           "guid": "net.beamartyr.newrelic.nodejs.memoizee",
           "duration" : 60,
           "metrics" : {}
