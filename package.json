@@ -9,7 +9,7 @@
   "author": "Issac Goldstand (http://www.beamartyr.net/)",
   "license": "ASLv2",
   "dependencies": {
-    "memoizee": "~0.2.6",
+    "memoizee": "~0.3.3",
     "log4js": "~0.6.14",
     "lodash": "~2.4.1"
   },

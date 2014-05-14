@@ -14,7 +14,7 @@
 
 var logger = require('log4js').getLogger('memoizee-newrelic'),
     _ = require('lodash'),
-    memProfile = require('memoizee/lib/ext/profile'),
+    memProfile = require('memoizee/profile'),
     cluster = require('cluster'),
     license = '';
 
