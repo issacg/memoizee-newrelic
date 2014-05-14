@@ -15,10 +15,13 @@
 var logger = require('log4js').getLogger('memoizee-newrelic'),
     _ = require('lodash'),
     memProfile = require('memoizee/profile'),
+    pkg = require('./package.json'),
+    os = require('os'),
+    https = require('https'),
     license = '';
 
 function report() {
-    var req = require('https').request({
+    var req = https.request({
         hostname: 'platform-api.newrelic.com',
         port: 443,
         method: 'POST',
@@ -32,13 +35,13 @@ function report() {
     });
     var obj = {
       "agent": {
-        "host" : require('os').hostname(),
+        "host" : os.hostname(),
         "pid" : process.pid,
-        "version" : "1.0.0"
+        "version" : pkg.version
       },
       "components": [
         {
-          "name": require('os').hostname(),
+          "name": os.hostname(),
           "guid": "net.beamartyr.newrelic.nodejs.memoizee",
           "duration" : 60,
           "metrics" : {}
