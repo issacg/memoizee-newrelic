@@ -49,12 +49,30 @@ function report() {
       ]
     }
     //logger.trace(memProfile.log());
+    var totalHits = 0,
+        totalMisses = 0,
+        totalCalls = 0,
+        totalFuncs = 0;
     require('lodash').each(memProfile.statistics, function(row, name) {
-        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Hits[calls|hits]"] = {total: (row.initial + row.cached), count: row.cached};
-        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Misses[calls|misses]"] = {total: (row.initial + row.cached), count: row.initial};
-        obj.components[0].metrics["Component/Memoize/" + name.replace(/\//g,'\\') + "/Calls[calls]"] = {total: (row.initial + row.cached)};
+        // Summarize
+        var report_name = name.replace(/\//g,'\\');
+        var hits = parseInt(row.cached);
+        var misses = parseInt(row.initial);
+        var calls = hits + misses;
+        // Report
+        obj.components[0].metrics["Component/Memoize/Functions/" + report_name + "/Hits[hits|calls]"] = {total: hits, count: calls};
+        obj.components[0].metrics["Component/Memoize/Functions/" + report_name + "/Misses[misses|calls]"] = {total: misses, count: calls};
+        // Aggregates
+        totalHits += hits;
+        totalMisses += misses;
+        totalCalls += calls;
+        totalFuncs += 1;
+        // Reset
         row.initial = row.cached = 0;
     });
+    obj.components[0].metrics["Component/Memoize/Total/Functions[functions]"] = {total: totalFuncs};
+    obj.components[0].metrics["Component/Memoize/Total/Hits[hits|calls]"] = {total: totalHits, count: totalCalls};
+    obj.components[0].metrics["Component/Memoize/Total/Misses[misses|calls]"] = {total: totalMisses, count: totalCalls};
     req.write(JSON.stringify(obj));
     logger.trace(JSON.stringify(obj));
     req.end();
