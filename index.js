@@ -53,7 +53,7 @@ function report() {
         totalMisses = 0,
         totalCalls = 0,
         totalFuncs = 0;
-    require('lodash').each(memProfile.statistics, function(row, name) {
+    _.each(memProfile.statistics, function(row, name) {
         // Summarize
         var report_name = name.replace(/\//g,'\\');
         var hits = parseInt(row.cached);
