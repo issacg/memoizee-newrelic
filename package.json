@@ -10,10 +10,10 @@
   "license": "ASLv2",
   "peerDependencies": {
     "memoizee": "~0.3.3",
-    "log4js": "~0.6.14"
+    "log4js": "0.6.x"
   },
   "dependencies": {
-    "lodash": "2.x"
+    "lodash": "~2.4.1"
   },
   "repository": {
     "type": "git",
