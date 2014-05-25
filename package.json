@@ -1,6 +1,6 @@
 {
   "name": "memoizee-newrelic",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "NewRelic Plugin for memoizee statistics",
   "main": "index.js",
   "scripts": {
