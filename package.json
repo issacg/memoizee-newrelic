@@ -8,12 +8,13 @@
   },
   "author": "Issac Goldstand (http://www.beamartyr.net/)",
   "license": "ASLv2",
-  "dependencies": {
+  "peerDependencies": {
     "memoizee": "~0.3.3",
-    "log4js": "~0.6.14",
-    "lodash": "~2.4.1"
+    "log4js": "~0.6.14"
   },
-  "devDependencies": {},
+  "dependencies": {
+    "lodash": "2.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/issacg/memoizee-newrelic.git"
