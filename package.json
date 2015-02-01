@@ -9,8 +9,7 @@
   "author": "Issac Goldstand (http://www.beamartyr.net/)",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "memoizee": "~0.3.3",
-    "log4js": "0.6.x"
+    "memoizee": "~0.3.3"
   },
   "dependencies": {
     "lodash": "~2.4.1"
